@@ -34,7 +34,7 @@ class AddListFragment : Fragment() {
     }
 
     private fun insertListToDatabase() {
-        val title = editTextTextPersonName.text.toString()
+        val title = title_task.text.toString()
         if (!TextUtils.isEmpty(title)){
             val list = Lists(0, title)
             mListsViewModel.addList(list)

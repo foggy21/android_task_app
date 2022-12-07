@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.tasks_application.dao.ListsDao
+import com.example.tasks_application.dao.TaskDao
 import com.example.tasks_application.data.Lists
+import com.example.tasks_application.data.Task
 
-@Database(entities = [Lists::class], version = 1, exportSchema = false)
+@Database(entities = [Lists::class, Task::class], version = 5, exportSchema = false)
 abstract class TaskDatabase : RoomDatabase() {
     abstract fun listsDao() : ListsDao
+    abstract fun taskDao() : TaskDao
 
     companion object{
         @Volatile
@@ -25,7 +28,7 @@ abstract class TaskDatabase : RoomDatabase() {
                     context.applicationContext,
                     TaskDatabase::class.java,
                     "task_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }

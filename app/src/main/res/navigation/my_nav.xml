@@ -37,5 +37,32 @@
         <argument
             android:name="currentList"
             app:argType="com.example.tasks_application.data.Lists" />
+        <action
+            android:id="@+id/action_tasksFragment_to_subtaskFragment"
+            app:destination="@id/subtaskFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subtaskFragment"
+        android:name="com.example.tasks_application.fragments.tasks.SubtaskFragment"
+        android:label="Subtasks"
+        tools:layout="@layout/fragment_subtask" >
+        <action
+            android:id="@+id/action_subtaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.example.tasks_application.fragments.add_task.AddTaskFragment"
+        android:label="Add Task"
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
+        <argument
+            android:name="currentList"
+            app:argType="com.example.tasks_application.data.Lists" />
     </fragment>
 </navigation>
