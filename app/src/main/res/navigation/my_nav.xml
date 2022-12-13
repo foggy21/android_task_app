@@ -64,6 +64,12 @@
         <argument
             android:name="currentList"
             app:argType="com.example.tasks_application.data.Lists" />
+        <action
+            android:id="@+id/action_subtaskFragment_to_updateTaskFragment"
+            app:destination="@id/updateTaskFragment" />
+        <action
+            android:id="@+id/action_subtaskFragment_to_updateSubtaskFragment"
+            app:destination="@id/updateSubtaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
@@ -100,5 +106,41 @@
         <argument
             android:name="currentTask"
             app:argType="com.example.tasks_application.data.Task" />
+        <argument
+            android:name="currentList"
+            app:argType="com.example.tasks_application.data.Lists" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateTaskFragment"
+        android:name="com.example.tasks_application.fragments.update_task.UpdateTaskFragment"
+        android:label="Update Task"
+        tools:layout="@layout/fragment_update_task" >
+        <argument
+            android:name="currentTask"
+            app:argType="com.example.tasks_application.data.Task" />
+        <argument
+            android:name="currentList"
+            app:argType="com.example.tasks_application.data.Lists" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_tasksFragment"
+            app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateSubtaskFragment"
+        android:name="com.example.tasks_application.fragments.update_subtask.UpdateSubtaskFragment"
+        android:label="Update Subtask"
+        tools:layout="@layout/fragment_update_subtask" >
+        <action
+            android:id="@+id/action_updateSubtaskFragment_to_subtaskFragment"
+            app:destination="@id/subtaskFragment" />
+        <argument
+            android:name="currentSubtask"
+            app:argType="com.example.tasks_application.data.Subtask" />
+        <argument
+            android:name="currentTask"
+            app:argType="com.example.tasks_application.data.Task" />
+        <argument
+            android:name="currentList"
+            app:argType="com.example.tasks_application.data.Lists" />
     </fragment>
 </navigation>

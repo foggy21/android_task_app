@@ -7,49 +7,49 @@
     tools:context=".fragments.add_subtask.AddSubtaskFragment">
 
     <EditText
-        android:id="@+id/title_task3"
+        android:id="@+id/title_task4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/title"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@id/desc_task3"
+        app:layout_constraintBottom_toTopOf="@id/desc_task4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/desc_task3"
+        android:id="@+id/desc_task4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/desc"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@id/date_task3"
+        app:layout_constraintBottom_toTopOf="@id/date_task4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_task3" />
+        app:layout_constraintTop_toBottomOf="@id/title_task4" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_subtask"
+        android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_task3" />
+        app:layout_constraintTop_toBottomOf="@+id/date_task4" />
 
     <EditText
-        android:id="@+id/date_task3"
+        android:id="@+id/date_task4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/date"
         android:inputType="date"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_task3" />
+        app:layout_constraintTop_toBottomOf="@+id/desc_task4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

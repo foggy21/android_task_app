@@ -11,7 +11,7 @@ import com.example.tasks_application.data.Lists
 import com.example.tasks_application.data.Subtask
 import com.example.tasks_application.data.Task
 
-@Database(entities = [Lists::class, Task::class, Subtask::class], version = 8, exportSchema = false)
+@Database(entities = [Lists::class, Task::class, Subtask::class], version = 9, exportSchema = false)
 abstract class TaskDatabase : RoomDatabase() {
     abstract fun listsDao() : ListsDao
     abstract fun taskDao() : TaskDao

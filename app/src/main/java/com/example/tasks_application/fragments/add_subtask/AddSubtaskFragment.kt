@@ -10,8 +10,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.tasks_application.fragments.add_subtask.AddSubtaskFragment
-import com.example.tasks_application.fragments.add_subtask.AddSubtaskFragmentDirections
 import com.example.tasks_application.R
 import com.example.tasks_application.data.Subtask
 import com.example.tasks_application.view_models.SubtaskViewModel
@@ -26,11 +24,11 @@ class AddSubtaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_add_subtask, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_subtask, container, false)
 
         mSubtaskViewModel = ViewModelProvider(this)[SubtaskViewModel::class.java]
 
-        view.button2.setOnClickListener {
+        view.button3.setOnClickListener {
             insertSubtaskToDatabase()
         }
 
@@ -38,14 +36,14 @@ class AddSubtaskFragment : Fragment() {
     }
 
     private fun insertSubtaskToDatabase() {
-        val title = title_task.text.toString()
-        val desc = desc_task.text.toString()
-        val date = date_task.text.toString()
+        val title = title_task3.text.toString()
+        val desc = desc_task3.text.toString()
+        val date = date_task3.text.toString()
         if (inputChecked(title, desc, date)){
             val subtask = Subtask(0, args.currentTask.task_id, title, desc, date)
             mSubtaskViewModel.addSubtask(subtask)
             Toast.makeText(requireContext(), "Successfully added subtask!", Toast.LENGTH_LONG).show()
-            val action = AddSubtaskFragmentDirections.actionAddSubtaskFragmentToSubtaskFragment(args.currentTask)
+            val action = AddSubtaskFragmentDirections.actionAddSubtaskFragmentToSubtaskFragment(args.currentTask, args.currentList)
             findNavController().navigate(action)
         } else{
             Toast.makeText(requireContext(), "Please fill out all fields.", Toast.LENGTH_LONG).show()
@@ -53,6 +51,6 @@ class AddSubtaskFragment : Fragment() {
     }
 
     private fun inputChecked(title : String, desc : String, date : String) : Boolean {
-        return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(desc) && TextUtils.isEmpty(date))
+        return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(desc) || TextUtils.isEmpty(date))
     }
 }

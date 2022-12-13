@@ -44,7 +44,7 @@ class SubtaskFragment : Fragment() {
         })
 
         view.floatingActionButton3.setOnClickListener{
-            val action = SubtaskFragmentDirections.actionSubtaskFragmentToAddSubtaskFragment(args.currentTask)
+            val action = SubtaskFragmentDirections.actionSubtaskFragmentToAddSubtaskFragment(args.currentTask, args.currentList)
             findNavController().navigate(action)
         }
 
@@ -61,7 +61,8 @@ class SubtaskFragment : Fragment() {
             deleteTask()
         }
         if (item.itemId == R.id.menu_rename){
-
+            val action = SubtaskFragmentDirections.actionSubtaskFragmentToUpdateTaskFragment(args.currentTask, args.currentList)
+            findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)
     }
