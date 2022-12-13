@@ -11,4 +11,7 @@
     <string name="date">Date</string>
     <string name="add_task">Add task</string>
     <string name="favorite">Favorite</string>
+    <string name="rename">rename</string>
+    <string name="update">Update</string>
+    <string name="add_subtask">add subtask</string>
 </resources>

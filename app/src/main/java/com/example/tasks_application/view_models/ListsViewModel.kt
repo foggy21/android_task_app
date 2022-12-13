@@ -26,6 +26,12 @@ class ListsViewModel(application : Application) : AndroidViewModel(application) 
         }
     }
 
+    fun updateList(list: Lists){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateList(list)
+        }
+    }
+
     fun deleteList(list: Lists){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteList(list)

@@ -4,20 +4,24 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.example.tasks_application.data.Task
 import com.example.tasks_application.database.TaskDatabase
+import com.example.tasks_application.fragments.tasks.TasksFragment
+import com.example.tasks_application.fragments.tasks.TasksFragmentArgs
 import com.example.tasks_application.repositories.TaskRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
-    val getTasks: LiveData<List<Task>>
+    lateinit var getTasks: LiveData<List<Task>>
     private val repository : TaskRepository
+    private lateinit var args : TasksFragmentArgs
 
     init{
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(taskDao)
-        getTasks = repository.getTasks
     }
 
     fun addTask(task: Task){
@@ -30,5 +34,10 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteTask(task)
         }
+    }
+
+    fun accessArgs(taskArgs: TasksFragmentArgs){
+        args = taskArgs
+        getTasks = repository.getTasks(args.currentList.id)
     }
 }

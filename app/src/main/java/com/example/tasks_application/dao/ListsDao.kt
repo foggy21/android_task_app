@@ -1,17 +1,16 @@
 package com.example.tasks_application.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.tasks_application.data.Lists
 
 @Dao
 abstract class ListsDao  {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun addList(list: Lists)
+    abstract suspend fun addList(list: Lists)
+
+    @Update
+    abstract suspend fun updateList(list : Lists)
 
     @Delete
     abstract suspend fun  deleteList(list : Lists)

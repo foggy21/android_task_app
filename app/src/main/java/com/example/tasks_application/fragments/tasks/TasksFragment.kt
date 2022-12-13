@@ -28,6 +28,7 @@ class TasksFragment : Fragment() {
 
         mListsViewModel = ViewModelProvider(this)[ListsViewModel::class.java]
         mTaskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
+        mTaskViewModel.accessArgs(args)
 
         setHasOptionsMenu(true)
 
@@ -37,7 +38,7 @@ class TasksFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         mTaskViewModel.getTasks.observe(viewLifecycleOwner, Observer{ task ->
-            adapter.setData(task as MutableList<Task>)
+            adapter.setData(task)
         })
 
         view.floatingActionButton2.setOnClickListener{
@@ -50,11 +51,16 @@ class TasksFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.rename_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_delete){
             deleteList()
+        }
+        if (item.itemId == R.id.menu_rename){
+            val action = TasksFragmentDirections.actionTasksFragmentToUpdateListFragment(args.currentList)
+            findNavController().navigate(action)
         }
         return super.onOptionsItemSelected(item)
     }

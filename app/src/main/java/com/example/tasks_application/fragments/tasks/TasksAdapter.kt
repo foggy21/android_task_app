@@ -6,17 +6,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasks_application.R
 import com.example.tasks_application.data.Task
+import com.example.tasks_application.view_models.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_add_task.view.*
 import kotlinx.android.synthetic.main.lists_row.view.*
 import kotlinx.android.synthetic.main.tasks_row.view.*
 import kotlinx.android.synthetic.main.tasks_row.view.rowLayout
 
-class TasksAdapter(arguments: TasksFragmentArgs) : RecyclerView.Adapter<TasksAdapter.MyViewHolder>() {
+class TasksAdapter(private var args: TasksFragmentArgs) : RecyclerView.Adapter<TasksAdapter.MyViewHolder>() {
     private var tasks = emptyList<Task>()
-    private var args = arguments
     class MyViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -33,10 +34,11 @@ class TasksAdapter(arguments: TasksFragmentArgs) : RecyclerView.Adapter<TasksAda
             if (currentTask.favorite){
                 holder.itemView.setBackgroundColor(Color.YELLOW)
             }
-        }
 
-        holder.itemView.rowLayout.setOnClickListener {
-
+            holder.itemView.rowLayout.setOnClickListener {
+                val action = TasksFragmentDirections.actionTasksFragmentToSubtaskFragment(currentTask, args.currentList)
+                holder.itemView.findNavController().navigate(action)
+            }
         }
     }
 
@@ -44,20 +46,9 @@ class TasksAdapter(arguments: TasksFragmentArgs) : RecyclerView.Adapter<TasksAda
         return tasks.size
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(task: MutableList<Task>){
-        var i = 0
-        while (i < task.size){
-            if (task[i].list_id != args.currentList.id){
-                task.remove(task[i])
-            } else {
-                i += 1
-            }
-        }
+    fun setData(task: List<Task>){
         this.tasks = task
         notifyDataSetChanged()
     }
-
-
 }

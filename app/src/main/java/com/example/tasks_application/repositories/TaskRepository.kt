@@ -5,7 +5,9 @@ import com.example.tasks_application.dao.TaskDao
 import com.example.tasks_application.data.Task
 
 class TaskRepository(private val taskDao: TaskDao) {
-    val getTasks : LiveData<List<Task>> = taskDao.getTasks()
+    fun getTasks(id: Int) : LiveData<List<Task>>{
+        return taskDao.getTasks(id)
+    }
 
     suspend fun addTask(task: Task){
         taskDao.addTask(task)

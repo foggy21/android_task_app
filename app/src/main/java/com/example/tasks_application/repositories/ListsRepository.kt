@@ -11,6 +11,10 @@ class ListsRepository(private val listsDao : ListsDao) {
         listsDao.addList(list)
     }
 
+    suspend fun updateList(list: Lists){
+        listsDao.updateList(list)
+    }
+
     suspend fun deleteList(list: Lists){
         listsDao.deleteList(list)
     }
