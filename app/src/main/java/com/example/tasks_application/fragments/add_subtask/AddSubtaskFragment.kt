@@ -37,10 +37,8 @@ class AddSubtaskFragment : Fragment() {
 
     private fun insertSubtaskToDatabase() {
         val title = title_task3.text.toString()
-        val desc = desc_task3.text.toString()
-        val date = date_task3.text.toString()
-        if (inputChecked(title, desc, date)){
-            val subtask = Subtask(0, args.currentTask.task_id, title, desc, date)
+        if (inputChecked(title)){
+            val subtask = Subtask(0, args.currentTask.task_id, title)
             mSubtaskViewModel.addSubtask(subtask)
             Toast.makeText(requireContext(), "Successfully added subtask!", Toast.LENGTH_LONG).show()
             val action = AddSubtaskFragmentDirections.actionAddSubtaskFragmentToSubtaskFragment(args.currentTask, args.currentList)
@@ -50,7 +48,7 @@ class AddSubtaskFragment : Fragment() {
         }
     }
 
-    private fun inputChecked(title : String, desc : String, date : String) : Boolean {
-        return !(TextUtils.isEmpty(title) || TextUtils.isEmpty(desc) || TextUtils.isEmpty(date))
+    private fun inputChecked(title : String) : Boolean {
+        return !(TextUtils.isEmpty(title))
     }
 }

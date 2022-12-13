@@ -29,8 +29,6 @@ class UpdateSubtaskFragment : Fragment() {
         mSubtaskViewModel = ViewModelProvider(this)[SubtaskViewModel::class.java]
 
         view.title_task4.setText(args.currentSubtask.subtask_title)
-        view.desc_task4.setText(args.currentSubtask.desc)
-        view.date_task4.setText(args.currentSubtask.date)
 
         view.button4.setOnClickListener {
             updateSubtaskInDatabase()
@@ -41,11 +39,9 @@ class UpdateSubtaskFragment : Fragment() {
 
     private fun updateSubtaskInDatabase() {
         val title = title_task4.text.toString()
-        val desc = desc_task4.text.toString()
-        val date = date_task4.text.toString()
 
-        if (inputChecked(title, desc, date)) {
-            val subtask = Subtask(args.currentSubtask.subtask_id, args.currentTask.task_id, title, desc, date)
+        if (inputChecked(title)) {
+            val subtask = Subtask(args.currentSubtask.subtask_id, args.currentTask.task_id, title)
             mSubtaskViewModel.updateSubtask(subtask)
             Toast.makeText(requireContext(), "Successfully updated!", Toast.LENGTH_LONG).show()
             val action = UpdateSubtaskFragmentDirections.actionUpdateSubtaskFragmentToSubtaskFragment(args.currentTask, args.currentList)
@@ -55,7 +51,7 @@ class UpdateSubtaskFragment : Fragment() {
         }
     }
 
-    private fun inputChecked(title : String, desc : String, date : String) : Boolean {
-        return !(TextUtils.isEmpty(title) && TextUtils.isEmpty(desc) && TextUtils.isEmpty(date))
+    private fun inputChecked(title : String) : Boolean {
+        return !(TextUtils.isEmpty(title))
     }
 }

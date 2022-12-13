@@ -12,6 +12,4 @@ data class Subtask(
     val subtask_id : Int,
     val task_id : Int,
     val subtask_title : String,
-    val desc: String,
-    val date: String,
 ) : Parcelable
